@@ -12,7 +12,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
 }
 
 body{
@@ -37,6 +37,36 @@ h1{
   margin-bottom:30px;
   color:#cbd5e1;
   line-height:1.6;
+}
+
+.top-bar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+  justify-content:center;
+}
+
+.action-btn{
+  background:#38bdf8;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.action-btn:hover{
+  background:#0ea5e9;
+}
+
+select{
+  background:#1e293b;
+  color:white;
+  border:1px solid #334155;
+  padding:10px;
+  border-radius:8px;
 }
 
 .progress-container{
@@ -167,6 +197,178 @@ h1{
   color:#cbd5e1;
 }
 
+.profile-dropdown{
+  position:relative;
+  display:inline-block;
+}
+
+.dropdown-list{
+  position:absolute;
+  top:45px;
+  left:0;
+  background:#1e293b;
+  border:1px solid #334155;
+  border-radius:8px;
+  width:220px;
+  display:none;
+  z-index:999;
+  overflow:hidden;
+}
+
+.dropdown-list.show{
+  display:block;
+}
+
+.dropdown-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.dropdown-item:hover{
+  background:#0f172a;
+}
+
+.delete-profile{
+  background:red;
+  border:none;
+  color:white;
+  padding:3px 6px;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+/* Active profile badge on dropdown button */
+.active-profile-name{
+  font-weight:bold;
+  color:#facc15;
+  margin-left:4px;
+}
+
+/* Note wrapper replaces the bare textarea */
+.note-wrapper{
+  display:none;
+  margin:4px 0 14px 0;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #334155;
+}
+
+.note-wrapper.show-note{
+  display:block;
+}
+
+.note-toolbar{
+  display:flex;
+  background:#0f172a;
+  border-bottom:1px solid #334155;
+}
+
+.note-tab{
+  flex:1;
+  padding:7px 0;
+  text-align:center;
+  font-size:13px;
+  cursor:pointer;
+  color:#94a3b8;
+  border:none;
+  background:transparent;
+  transition:background 0.15s, color 0.15s;
+}
+
+.note-tab.active{
+  background:#1e293b;
+  color:#38bdf8;
+  font-weight:bold;
+}
+
+.note-tab:hover:not(.active){
+  background:#1a2540;
+  color:#cbd5e1;
+}
+
+.note-area{
+  width:100%;
+  min-height:100px;
+  resize:vertical;
+  border:none;
+  padding:12px;
+  background:#1e293b;
+  color:white;
+  font-size:14px;
+  line-height:1.6;
+  display:none;
+  outline:none;
+}
+
+.note-area.tab-visible{
+  display:block;
+}
+
+/* Preview pane */
+.note-preview{
+  display:none;
+  padding:14px 16px;
+  background:#1e293b;
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.8;
+  min-height:80px;
+}
+
+.note-preview.tab-visible{
+  display:block;
+}
+
+.note-preview h2{
+  color:#facc15;
+  font-size:17px;
+  margin:10px 0 6px;
+}
+
+.note-preview h3{
+  color:#38bdf8;
+  font-size:15px;
+  margin:8px 0 4px;
+}
+
+.note-preview h4{
+  color:#94a3b8;
+  font-size:14px;
+  margin:6px 0 4px;
+}
+
+.note-preview strong{ color:#f1f5f9; }
+
+.note-preview em{ color:#a5b4fc; font-style:italic; }
+
+.note-preview code{
+  background:#0f172a;
+  color:#34d399;
+  padding:1px 5px;
+  border-radius:4px;
+  font-family:monospace;
+  font-size:13px;
+}
+
+.note-preview ul{
+  padding-left:18px;
+  margin:6px 0;
+}
+
+.note-preview li{
+  margin:2px 0;
+}
+
+.note-preview .empty{
+  color:#475569;
+  font-style:italic;
+}
+
 @media(max-width:768px){
 
   .todo-item{
@@ -189,9 +391,36 @@ h1{
 <h1>FAANG Preparation Roadmap 🚀</h1>
 
 <p class="subtitle">
-Python + DSA + System Design roadmap for FAANG companies like Google,
-Meta, Amazon, Microsoft, Apple, Netflix, and top startups.
+Python + DSA + System Design roadmap for FAANG companies.
 </p>
+
+<div class="top-bar">
+
+<div class="profile-dropdown" id="profileDropdown">
+  <button class="action-btn" id="dropdownBtn">Profiles&nbsp;<span id="activeProfileLabel" class="active-profile-name"></span>&nbsp;⬇</button>
+  <div class="dropdown-list" id="dropdownList"></div>
+</div>
+
+  <button class="action-btn" id="newProfileBtn">
+    ➕ New Profile
+  </button>
+
+  <button class="action-btn" id="shareBtn">
+    📤 Share Profile
+  </button>
+
+  <button class="action-btn" id="importBtn">
+    📥 Import Profile
+  </button>
+
+  <input
+    type="file"
+    id="importFile"
+    accept=".json"
+    hidden
+  />
+
+</div>
 
 <div class="progress-container">
   <div class="progress-bar" id="overallProgress"></div>
@@ -504,7 +733,7 @@ const roadmap = [
             "Two Sum",
             "Best Time to Buy/Sell Stock",
             "Product Except Self",
-            "Kadane’s Algorithm"
+            "Kadane's Algorithm"
           ]
         }
 
@@ -897,31 +1126,291 @@ const roadmap = [
 
 ];
 
-const container = document.getElementById("todoContainer");
 
-const savedData =
-JSON.parse(localStorage.getItem("faangRoadmapData")) || {};
+
+/* =========================
+   PROFILE SYSTEM
+========================= */
+
+let profiles = {};
+
+try{
+
+  profiles =
+    JSON.parse(
+      localStorage.getItem("faangProfiles")
+    ) || {};
+
+}catch(err){
+
+  profiles = {};
+
+}
+
+let activeProfile =
+  localStorage.getItem("activeProfile")
+  || "default";
+
+if(!profiles[activeProfile]){
+
+  profiles[activeProfile] = {
+
+    name:"My Progress",
+
+    data:{}
+
+  };
+
+}
+
+let savedData =
+  profiles[activeProfile].data;
+
+/* =========================
+   SWITCH PROFILE (in-place, no reload)
+========================= */
+
+function switchProfile(id){
+
+  if(!profiles[id]) return;
+
+  activeProfile = id;
+  localStorage.setItem("activeProfile", id);
+  savedData = profiles[activeProfile].data;
+
+  // Update the button label
+  const lbl = document.getElementById("activeProfileLabel");
+  if(lbl) lbl.innerText = profiles[id].name;
+
+  // Re-apply every checkbox + note to the new profile's data
+  document.querySelectorAll(".todo-item").forEach(item => {
+
+    const checkbox = item.querySelector("input[type='checkbox']");
+    if(!checkbox) return;
+
+    const label    = item.querySelector("label");
+    const wrapper  = item.nextElementSibling; // .note-wrapper
+    const noteArea = wrapper && wrapper.querySelector("textarea");
+
+    const state = savedData[checkbox.id] || {};
+
+    checkbox.checked = !!state.checked;
+    label.classList.toggle("completed", !!state.checked);
+
+    if(noteArea){
+      noteArea.value = state.note || "";
+    }
+
+    if(wrapper && wrapper.classList.contains("note-wrapper")){
+      // Collapse open notes and reset to Edit tab
+      wrapper.classList.remove("show-note");
+      const editTab    = wrapper.querySelector(".note-tab:first-child");
+      const previewTab = wrapper.querySelector(".note-tab:last-child");
+      const preview    = wrapper.querySelector(".note-preview");
+      if(editTab)    { editTab.classList.add("active"); }
+      if(previewTab) { previewTab.classList.remove("active"); }
+      if(noteArea)   { noteArea.classList.add("tab-visible"); }
+      if(preview)    { preview.classList.remove("tab-visible"); }
+    }
+
+  });
+
+  updateProgress();
+}
+
+/* =========================
+   PROFILE UI
+========================= */
+
+
+function renderProfiles(){
+
+  const list =
+    document.getElementById("dropdownList");
+
+  list.innerHTML = "";
+
+  Object.entries(profiles).forEach(([id, profile]) => {
+
+    const row = document.createElement("div");
+    row.className = "dropdown-item";
+
+    // Clicking anywhere on the row switches profile
+    row.addEventListener("click", () => {
+      switchProfile(id);
+      document.getElementById("dropdownList").classList.remove("show");
+    });
+
+    const nameBtn = document.createElement("span");
+    nameBtn.innerText = profile.name;
+    nameBtn.style.flex = "1";
+
+    // FIX 2: Only show delete button for non-default profiles
+    if(id !== "default"){
+      const delBtn = document.createElement("button");
+      delBtn.innerText = "🗑";
+      delBtn.className = "delete-profile";
+
+      delBtn.addEventListener("click", (e) => {
+        e.stopPropagation();  // prevent row's switchProfile from firing
+
+        if(confirm("Delete this profile?")){
+          delete profiles[id];
+
+          localStorage.setItem(
+            "faangProfiles",
+            JSON.stringify(profiles)
+          );
+
+          if(activeProfile === id){
+            renderProfiles();
+            switchProfile("default");
+          } else {
+            renderProfiles();
+          }
+
+          document.getElementById("dropdownList").classList.remove("show");
+        }
+      });
+
+      row.appendChild(nameBtn);
+      row.appendChild(delBtn);
+    } else {
+      row.appendChild(nameBtn);
+    }
+
+    list.appendChild(row);
+  });
+  initProfileDropdown();
+}
+
+renderProfiles();
+
+
+
+document
+  .getElementById("newProfileBtn")
+  .addEventListener("click", ()=>{
+
+    const name =
+      prompt("Profile name?");
+
+    if(!name) return;
+
+    const id =
+      "profile-" + Date.now();
+
+    profiles[id] = {
+
+      name:name,
+
+      data:{}
+
+    };
+
+    localStorage.setItem(
+      "faangProfiles",
+      JSON.stringify(profiles)
+    );
+
+    renderProfiles();
+    switchProfile(id);
+
+  });
+
+/* =========================
+   MARKDOWN RENDERER (lightweight)
+========================= */
+
+function renderMarkdown(text){
+
+  if(!text || !text.trim()){
+    return '<span class="empty">No notes yet — switch to Edit to write something.</span>';
+  }
+
+  // Escape HTML first
+  let html = text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
+  // Headings
+  html = html.replace(/^### (.+)$/gm,"<h4>$1</h4>");
+  html = html.replace(/^## (.+)$/gm, "<h3>$1</h3>");
+  html = html.replace(/^# (.+)$/gm,  "<h2>$1</h2>");
+
+  // Bold / italic / code (inline)
+  html = html.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+  html = html.replace(/\*(.+?)\*/g,    "<em>$1</em>");
+  html = html.replace(/`(.+?)`/g,      "<code>$1</code>");
+
+  // Unordered list lines
+  const lines = html.split("\n");
+  let out = [];
+  let inList = false;
+
+  lines.forEach(line => {
+    if(/^- (.+)/.test(line)){
+      if(!inList){ out.push("<ul>"); inList = true; }
+      out.push("<li>" + line.replace(/^- /,"") + "</li>");
+    } else {
+      if(inList){ out.push("</ul>"); inList = false; }
+      if(line.match(/^<\/?h[234]>/)){
+        out.push(line);
+      } else {
+        out.push(line === "" ? "<br>" : line + "<br>");
+      }
+    }
+  });
+
+  if(inList) out.push("</ul>");
+
+  return out.join("");
+}
+
+/* =========================
+   INIT PROFILE LABEL
+========================= */
+
+(function initProfileLabel(){
+  const lbl = document.getElementById("activeProfileLabel");
+  if(lbl) lbl.innerText = profiles[activeProfile]?.name || "";
+})();
+
+/* =========================
+   ROADMAP RENDER
+========================= */
+
+const container =
+  document.getElementById("todoContainer");
 
 roadmap.forEach((phase, phaseIndex)=>{
 
-  const phaseDiv = document.createElement("div");
+  const phaseDiv =
+    document.createElement("div");
+
   phaseDiv.classList.add("phase");
 
-  // HEADER
-  const header = document.createElement("div");
+  const header =
+    document.createElement("div");
+
   header.classList.add("phase-header");
 
-  const title = document.createElement("h2");
+  const title =
+    document.createElement("h2");
+
   title.innerText = phase.title;
 
-  const arrow = document.createElement("span");
+  const arrow =
+    document.createElement("span");
+
   arrow.classList.add("arrow");
+
   arrow.innerText = "▼";
 
   header.appendChild(title);
   header.appendChild(arrow);
 
-  // TOGGLE
   header.addEventListener("click", ()=>{
 
     phaseDiv.classList.toggle("active");
@@ -933,101 +1422,190 @@ roadmap.forEach((phase, phaseIndex)=>{
 
   });
 
-  // CONTENT
-  const content = document.createElement("div");
+  const content =
+    document.createElement("div");
+
   content.classList.add("phase-content");
 
-  // DESCRIPTION
   if(phase.description){
 
-    const desc = document.createElement("p");
+    const desc =
+      document.createElement("p");
+
     desc.classList.add("phase-description");
-    desc.innerText = phase.description;
+
+    desc.innerText =
+      phase.description;
 
     content.appendChild(desc);
 
   }
 
-  // SECTIONS
   phase.sections.forEach((section, sectionIndex)=>{
 
-    const sectionTitle = document.createElement("h3");
+    const sectionTitle =
+      document.createElement("h3");
+
     sectionTitle.classList.add("section-title");
-    sectionTitle.innerText = section.heading;
+
+    sectionTitle.innerText =
+      section.heading;
 
     content.appendChild(sectionTitle);
 
-    // GROUPS
     section.groups.forEach((group, groupIndex)=>{
 
-      const groupTitle = document.createElement("h4");
+      const groupTitle =
+        document.createElement("h4");
+
       groupTitle.classList.add("group-title");
-      groupTitle.innerText = group.title;
+
+      groupTitle.innerText =
+        group.title;
 
       content.appendChild(groupTitle);
 
-      // TASKS
       group.tasks.forEach((task, taskIndex)=>{
 
         const taskId =
-        `task-${phaseIndex}-${sectionIndex}-${groupIndex}-${taskIndex}`;
+          `task-${phaseIndex}-${sectionIndex}-${groupIndex}-${taskIndex}`;
 
-        const item = document.createElement("div");
+        const item =
+          document.createElement("div");
+
         item.classList.add("todo-item");
 
-        const checkbox = document.createElement("input");
+        const checkbox =
+          document.createElement("input");
+
         checkbox.type = "checkbox";
+
         checkbox.id = taskId;
 
-        const label = document.createElement("label");
+        const label =
+          document.createElement("label");
+
         label.innerText = task;
+
         label.htmlFor = taskId;
 
-        const noteBtn = document.createElement("button");
+        const noteBtn =
+          document.createElement("button");
+
         noteBtn.classList.add("note-btn");
+
         noteBtn.innerText = "📝 Note";
 
-        const noteArea = document.createElement("textarea");
-        noteArea.classList.add("note-area");
-        noteArea.placeholder = "Write notes here...";
+        // Note wrapper: holds toolbar + textarea + preview
+        const noteWrapper =
+          document.createElement("div");
 
-        // LOAD DATA
+        noteWrapper.classList.add("note-wrapper");
+
+        // Toolbar
+        const toolbar =
+          document.createElement("div");
+
+        toolbar.classList.add("note-toolbar");
+
+        const editTab =
+          document.createElement("button");
+
+        editTab.classList.add("note-tab","active");
+        editTab.innerText = "✏️ Edit";
+        editTab.type = "button";
+
+        const previewTab =
+          document.createElement("button");
+
+        previewTab.classList.add("note-tab");
+        previewTab.innerText = "👁 Preview";
+        previewTab.type = "button";
+
+        toolbar.appendChild(editTab);
+        toolbar.appendChild(previewTab);
+
+        // Textarea
+        const noteArea =
+          document.createElement("textarea");
+
+        noteArea.classList.add("note-area","tab-visible");
+        noteArea.placeholder =
+          "Write notes here...\n\nSupports markdown:\n# Heading\n**bold**  *italic*  `code`\n- bullet item";
+
+        // Preview div
+        const notePreview =
+          document.createElement("div");
+
+        notePreview.classList.add("note-preview");
+
+        noteWrapper.appendChild(toolbar);
+        noteWrapper.appendChild(noteArea);
+        noteWrapper.appendChild(notePreview);
+
         if(savedData[taskId]?.checked){
+
           checkbox.checked = true;
+
           label.classList.add("completed");
+
         }
 
         if(savedData[taskId]?.note){
-          noteArea.value = savedData[taskId].note;
+
+          noteArea.value =
+            savedData[taskId].note;
+
         }
 
-        // EVENTS
-        checkbox.addEventListener("change", ()=>{
+        checkbox
+          .addEventListener("change", ()=>{
 
-          label.classList.toggle(
-            "completed",
-            checkbox.checked
-          );
+            label.classList.toggle(
+              "completed",
+              checkbox.checked
+            );
 
-          saveData();
-          updateProgress();
+            saveData();
 
+            updateProgress();
+
+          });
+
+        noteBtn
+          .addEventListener("click", ()=>{
+
+            noteWrapper.classList.toggle("show-note");
+
+          });
+
+        editTab.addEventListener("click", ()=>{
+          editTab.classList.add("active");
+          previewTab.classList.remove("active");
+          noteArea.classList.add("tab-visible");
+          notePreview.classList.remove("tab-visible");
         });
 
-        noteBtn.addEventListener("click", ()=>{
-
-          noteArea.classList.toggle("show-note");
-
+        previewTab.addEventListener("click", ()=>{
+          previewTab.classList.add("active");
+          editTab.classList.remove("active");
+          notePreview.classList.add("tab-visible");
+          noteArea.classList.remove("tab-visible");
+          notePreview.innerHTML = renderMarkdown(noteArea.value);
         });
 
-        noteArea.addEventListener("input", saveData);
+        noteArea
+          .addEventListener("input", saveData);
 
         item.appendChild(checkbox);
+
         item.appendChild(label);
+
         item.appendChild(noteBtn);
 
         content.appendChild(item);
-        content.appendChild(noteArea);
+
+        content.appendChild(noteWrapper);
 
       });
 
@@ -1036,34 +1614,57 @@ roadmap.forEach((phase, phaseIndex)=>{
   });
 
   phaseDiv.appendChild(header);
+
   phaseDiv.appendChild(content);
 
   container.appendChild(phaseDiv);
 
 });
 
+/* =========================
+   SAVE DATA
+========================= */
+
 function saveData(){
 
   const data = {};
 
-  document.querySelectorAll(".todo-item").forEach(item=>{
+  document
+    .querySelectorAll(".todo-item")
+    .forEach(item=>{
 
-    const checkbox = item.querySelector("input");
-    const noteArea = item.nextElementSibling;
+      const checkbox =
+        item.querySelector("input");
 
-    data[checkbox.id] = {
-      checked: checkbox.checked,
-      note: noteArea.value
-    };
+      const noteArea =
+        item.nextElementSibling.querySelector("textarea");
 
-  });
+      data[checkbox.id] = {
+
+        checked: checkbox.checked,
+
+        note: noteArea.value
+
+      };
+
+    });
+
+  profiles[activeProfile].data =
+    data;
 
   localStorage.setItem(
-    "faangRoadmapData",
-    JSON.stringify(data)
+
+    "faangProfiles",
+
+    JSON.stringify(profiles)
+
   );
 
 }
+
+/* =========================
+   PROGRESS
+========================= */
 
 function updateProgress(){
 
@@ -1077,20 +1678,176 @@ function updateProgress(){
       "input[type='checkbox']:checked"
     ).length;
 
-  const percent = (completed / total) * 100;
+  const percent =
+    (completed / total) * 100;
 
-  document.getElementById(
-    "overallProgress"
-  ).style.width = percent + "%";
+  document
+    .getElementById("overallProgress")
+    .style.width = percent + "%";
 
-  document.getElementById(
-    "stats"
-  ).innerText =
+  document
+    .getElementById("stats")
+    .innerText =
     `${completed} / ${total} Completed`;
 
 }
 
 updateProgress();
+
+/* =========================
+   SHARE PROFILE
+   FIX: Do NOT call prompt() before navigator.share().
+   prompt() breaks the user gesture chain in most browsers.
+   Use the existing profile name directly, then trigger
+   download/share immediately within the click handler.
+========================= */
+
+document
+  .getElementById("shareBtn")
+  .addEventListener("click", shareProfile);
+
+function shareProfile(){
+
+  const profile = profiles[activeProfile];
+  const exportName = profile.name;
+
+  const exportObject = {
+    name: exportName,
+    data: profile.data
+  };
+
+  const json = JSON.stringify(exportObject, null, 2);
+
+  // Use a data: URI — works on file://, http://, and https:// alike
+  const dataUri =
+    "data:application/json;charset=utf-8," +
+    encodeURIComponent(json);
+
+  const a = document.createElement("a");
+  a.href = dataUri;
+  a.download = exportName + ".json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+/* =========================
+   IMPORT PROFILE
+========================= */
+
+document
+  .getElementById("importBtn")
+  .addEventListener("click", ()=>{
+
+    document
+      .getElementById("importFile")
+      .click();
+
+  });
+
+document
+  .getElementById("importFile")
+  .addEventListener("change", importProfile);
+
+function importProfile(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload = function(e){
+
+    try{
+
+      const imported =
+        JSON.parse(e.target.result);
+
+      let baseName =
+  imported.name || "Imported Profile";
+
+let finalName = baseName;
+
+const exists = Object.values(profiles)
+  .some(p => p.name === baseName);
+
+if(exists){
+
+  const newName =
+    prompt(
+      "Profile name already exists. Enter a new name:",
+      baseName + " Copy"
+    );
+
+  if(!newName) return;
+
+  finalName = newName;
+}
+
+const profileId =
+  "imported-" + Date.now();
+
+profiles[profileId] = {
+  name: finalName,
+  data: imported.data || {}
+};
+
+      localStorage.setItem(
+
+        "faangProfiles",
+
+        JSON.stringify(profiles)
+
+      );
+
+      renderProfiles();
+
+      alert(
+        "Profile imported successfully!"
+      );
+
+    }catch(err){
+
+      alert("Invalid JSON file");
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+}
+
+function initProfileDropdown(){
+
+  const btn =
+    document.getElementById("dropdownBtn");
+
+  const list =
+    document.getElementById("dropdownList");
+
+  if(!btn || !list){
+    return;
+  }
+
+  // prevent duplicate listeners
+  btn.onclick = null;
+  document.onclick = null;
+
+  btn.onclick = (e) => {
+    e.stopPropagation();
+    list.classList.toggle("show");
+  };
+
+  document.onclick = (e) => {
+    if(!e.target.closest(".profile-dropdown")){
+      list.classList.remove("show");
+    }
+  };
+}
 
 </script>
 
