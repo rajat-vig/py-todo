@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>FAANG Preparation Roadmap</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#0f172a;
+  color:white;
+  padding:20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:10px;
+  color:#38bdf8;
+}
+
+.subtitle{
+  text-align:center;
+  margin-bottom:30px;
+  color:#cbd5e1;
+  line-height:1.6;
+}
+
+.progress-container{
+  width:100%;
+  height:14px;
+  background:#334155;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:10px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#22c55e;
+  transition:0.3s;
+}
+
+.stats{
+  text-align:center;
+  margin-bottom:30px;
+  color:#cbd5e1;
+}
+
+.phase{
+  background:#1e293b;
+  border-radius:12px;
+  margin-bottom:25px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+.phase-header{
+  background:#111827;
+  padding:18px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.phase-header h2{
+  color:#facc15;
+  font-size:24px;
+}
+
+.phase-content{
+  padding:20px;
+  display:none;
+}
+
+.phase.active .phase-content{
+  display:block;
+}
+
+.phase-description{
+  color:#cbd5e1;
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+.section-title{
+  margin-top:25px;
+  margin-bottom:15px;
+  color:#facc15;
+  font-size:22px;
+}
+
+.group-title{
+  margin-top:15px;
+  margin-bottom:10px;
+  color:#38bdf8;
+  font-size:18px;
+}
+
+.todo-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.todo-item label{
+  flex:1;
+  line-height:1.5;
+  cursor:pointer;
+}
+
+.completed{
+  text-decoration:line-through;
+  color:#94a3b8;
+}
+
+.note-btn{
+  background:#38bdf8;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.note-btn:hover{
+  background:#0ea5e9;
+}
+
+.note-area{
+  width:100%;
+  min-height:80px;
+  resize:vertical;
+  margin-top:8px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:8px;
+  padding:10px;
+  background:#334155;
+  color:white;
+  display:none;
+}
+
+.show-note{
+  display:block;
+}
+
+.arrow{
+  font-size:18px;
+  color:#cbd5e1;
+}
+
+@media(max-width:768px){
+
+  .todo-item{
+    flex-wrap:wrap;
+  }
+
+  .note-btn{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>FAANG Preparation Roadmap 🚀</h1>
+
+<p class="subtitle">
+Python + DSA + System Design roadmap for FAANG companies like Google,
+Meta, Amazon, Microsoft, Apple, Netflix, and top startups.
+</p>
+
+<div class="progress-container">
+  <div class="progress-bar" id="overallProgress"></div>
+</div>
+
+<div class="stats" id="stats">
+  0 / 0 Completed
+</div>
+
+<div id="todoContainer"></div>
+
+</div>
+
+<script>
+
+const roadmap = [
+
+{
+  title:"Phase 0 — Foundations",
+
+  description:
+  "Before DSA and System Design",
+
+  sections:[
+
+    {
+      heading:"Computer Science Basics",
+
+      groups:[
+
+        {
+          title:"Core Topics",
+
+          tasks:[
+            "How computers work",
+            "CPU, RAM, Disk",
+            "Binary & hexadecimal",
+            "Time complexity intuition",
+            "Compilation vs interpretation",
+            "Networking basics",
+            "Processes vs threads",
+            "Memory management",
+            "APIs and HTTP basics"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"Math for Interviews",
+
+      groups:[
+
+        {
+          title:"Math Topics",
+
+          tasks:[
+            "Logarithms",
+            "Modular arithmetic",
+            "Probability basics",
+            "Combinatorics",
+            "Bit manipulation math"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 1 — Python Mastery",
+
+  description:
+  "Goal: Become extremely comfortable writing clean, fast interview-quality code.",
+
+  sections:[
+
+    {
+      heading:"1. Python Basics",
+
+      groups:[
+
+        {
+          title:"Syntax & Fundamentals",
+
+          tasks:[
+            "Variables",
+            "Data types",
+            "Operators",
+            "Input/output",
+            "Comments",
+            "Indentation",
+            "Type casting"
+          ]
+        },
+
+        {
+          title:"Control Flow",
+
+          tasks:[
+            "if/else",
+            "loops",
+            "break/continue",
+            "pass"
+          ]
+        },
+
+        {
+          title:"Functions",
+
+          tasks:[
+            "parameters",
+            "return values",
+            "default args",
+            "keyword args",
+            "lambda",
+            "recursion"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"2. Python Data Structures",
+
+      groups:[
+
+        {
+          title:"Built-in Collections",
+
+          tasks:[
+            "list",
+            "tuple",
+            "set",
+            "dict"
+          ]
+        },
+
+        {
+          title:"Advanced Collections",
+
+          tasks:[
+            "defaultdict",
+            "Counter",
+            "deque",
+            "OrderedDict",
+            "namedtuple",
+            "heapq",
+            "bisect"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"3. Strings",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "slicing",
+            "immutability",
+            "string methods",
+            "regex",
+            "pattern matching",
+            "encoding/decoding"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"4. OOP in Python",
+
+      groups:[
+
+        {
+          title:"Core Concepts",
+
+          tasks:[
+            "classes",
+            "objects",
+            "inheritance",
+            "polymorphism",
+            "encapsulation",
+            "abstraction"
+          ]
+        },
+
+        {
+          title:"Advanced OOP",
+
+          tasks:[
+            "magic methods",
+            "dunder methods",
+            "decorators",
+            "properties",
+            "static/class methods",
+            "metaclasses",
+            "dataclasses"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"5. Functional Programming",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "map",
+            "filter",
+            "reduce",
+            "generators",
+            "iterators",
+            "comprehensions",
+            "closures"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"6. Error Handling",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "exceptions",
+            "try/except/finally",
+            "custom exceptions",
+            "logging"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"7. File Handling",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "reading/writing files",
+            "JSON",
+            "CSV",
+            "serialization",
+            "pickle"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 2 — Data Structures",
+
+  description:
+  "This is the heart of coding interviews.",
+
+  sections:[
+
+    {
+      heading:"1. Arrays",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "traversal",
+            "prefix sum",
+            "sliding window",
+            "two pointers",
+            "rotation",
+            "cyclic sort"
+          ]
+        },
+
+        {
+          title:"Problems",
+
+          tasks:[
+            "Two Sum",
+            "Best Time to Buy/Sell Stock",
+            "Product Except Self",
+            "Kadane’s Algorithm"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"2. Strings",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "hashing",
+            "frequency count",
+            "KMP",
+            "Rabin-Karp",
+            "Z Algorithm",
+            "palindrome problems"
+          ]
+        },
+
+        {
+          title:"Problems",
+
+          tasks:[
+            "Longest Substring Without Repeating",
+            "Minimum Window Substring",
+            "Group Anagrams"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"3. Linked Lists",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "singly",
+            "doubly",
+            "circular",
+            "fast/slow pointers",
+            "reversal",
+            "merge"
+          ]
+        },
+
+        {
+          title:"Problems",
+
+          tasks:[
+            "Reverse Linked List",
+            "Detect Cycle",
+            "Merge K Sorted Lists",
+            "LRU Cache"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 3 — Algorithms",
+
+  description:
+  "Master core algorithms and complexity analysis.",
+
+  sections:[
+
+    {
+      heading:"Sorting Algorithms",
+
+      groups:[
+
+        {
+          title:"Algorithms",
+
+          tasks:[
+            "Bubble Sort",
+            "Selection Sort",
+            "Insertion Sort",
+            "Merge Sort",
+            "Quick Sort",
+            "Heap Sort",
+            "Counting Sort",
+            "Radix Sort",
+            "Bucket Sort"
+          ]
+        },
+
+        {
+          title:"Know",
+
+          tasks:[
+            "stability",
+            "time complexity",
+            "space complexity",
+            "best/worst case"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"Searching",
+
+      groups:[
+
+        {
+          title:"Algorithms",
+
+          tasks:[
+            "Binary Search",
+            "Ternary Search",
+            "Exponential Search"
+          ]
+        },
+
+        {
+          title:"Patterns",
+
+          tasks:[
+            "search on answer",
+            "rotated arrays",
+            "monotonic functions"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 4 — Low Level Design (LLD)",
+
+  description:
+  "Important for SDE2+ interviews.",
+
+  sections:[
+
+    {
+      heading:"OOP Design Principles",
+
+      groups:[
+
+        {
+          title:"Principles",
+
+          tasks:[
+            "SOLID",
+            "DRY",
+            "KISS",
+            "YAGNI"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"Design Patterns",
+
+      groups:[
+
+        {
+          title:"Creational",
+
+          tasks:[
+            "Singleton",
+            "Factory",
+            "Builder",
+            "Prototype"
+          ]
+        },
+
+        {
+          title:"Structural",
+
+          tasks:[
+            "Adapter",
+            "Decorator",
+            "Facade",
+            "Composite"
+          ]
+        },
+
+        {
+          title:"Behavioral",
+
+          tasks:[
+            "Observer",
+            "Strategy",
+            "State",
+            "Command",
+            "Chain of Responsibility"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 5 — High Level System Design (HLD)",
+
+  description:
+  "Critical for FAANG mid/senior roles.",
+
+  sections:[
+
+    {
+      heading:"1. Networking",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "TCP/IP",
+            "HTTP/HTTPS",
+            "WebSockets",
+            "DNS",
+            "CDN",
+            "Load balancing"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"2. Databases",
+
+      groups:[
+
+        {
+          title:"Topics",
+
+          tasks:[
+            "SQL",
+            "indexing",
+            "partitioning",
+            "replication",
+            "sharding",
+            "NoSQL",
+            "key-value",
+            "document DB",
+            "columnar DB",
+            "graph DB"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 6 — Interview-Specific Preparation",
+
+  description:
+  "Focus on communication + coding patterns.",
+
+  sections:[
+
+    {
+      heading:"Coding Interview Patterns",
+
+      groups:[
+
+        {
+          title:"Patterns",
+
+          tasks:[
+            "sliding window",
+            "two pointers",
+            "BFS/DFS",
+            "backtracking",
+            "heap problems",
+            "graph traversal",
+            "DP patterns"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"Behavioral Interviews",
+
+      groups:[
+
+        {
+          title:"Use",
+
+          tasks:[
+            "STAR format",
+            "leadership stories",
+            "conflict resolution",
+            "ownership examples"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+},
+
+{
+  title:"PHASE 7 — Recommended Resources",
+
+  description:
+  "Best resources for interview prep.",
+
+  sections:[
+
+    {
+      heading:"Coding Practice",
+
+      groups:[
+
+        {
+          title:"Platforms",
+
+          tasks:[
+            "LeetCode",
+            "NeetCode",
+            "Codeforces"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"System Design",
+
+      groups:[
+
+        {
+          title:"Resources",
+
+          tasks:[
+            "System Design Primer",
+            "ByteByteGo"
+          ]
+        }
+
+      ]
+    },
+
+    {
+      heading:"Mock Interviews",
+
+      groups:[
+
+        {
+          title:"Platforms",
+
+          tasks:[
+            "Pramp",
+            "Interviewing.io"
+          ]
+        }
+
+      ]
+    }
+
+  ]
+}
+
+];
+
+const container = document.getElementById("todoContainer");
+
+const savedData =
+JSON.parse(localStorage.getItem("faangRoadmapData")) || {};
+
+roadmap.forEach((phase, phaseIndex)=>{
+
+  const phaseDiv = document.createElement("div");
+  phaseDiv.classList.add("phase");
+
+  // HEADER
+  const header = document.createElement("div");
+  header.classList.add("phase-header");
+
+  const title = document.createElement("h2");
+  title.innerText = phase.title;
+
+  const arrow = document.createElement("span");
+  arrow.classList.add("arrow");
+  arrow.innerText = "▼";
+
+  header.appendChild(title);
+  header.appendChild(arrow);
+
+  // TOGGLE
+  header.addEventListener("click", ()=>{
+
+    phaseDiv.classList.toggle("active");
+
+    arrow.innerText =
+      phaseDiv.classList.contains("active")
+      ? "▲"
+      : "▼";
+
+  });
+
+  // CONTENT
+  const content = document.createElement("div");
+  content.classList.add("phase-content");
+
+  // DESCRIPTION
+  if(phase.description){
+
+    const desc = document.createElement("p");
+    desc.classList.add("phase-description");
+    desc.innerText = phase.description;
+
+    content.appendChild(desc);
+
+  }
+
+  // SECTIONS
+  phase.sections.forEach((section, sectionIndex)=>{
+
+    const sectionTitle = document.createElement("h3");
+    sectionTitle.classList.add("section-title");
+    sectionTitle.innerText = section.heading;
+
+    content.appendChild(sectionTitle);
+
+    // GROUPS
+    section.groups.forEach((group, groupIndex)=>{
+
+      const groupTitle = document.createElement("h4");
+      groupTitle.classList.add("group-title");
+      groupTitle.innerText = group.title;
+
+      content.appendChild(groupTitle);
+
+      // TASKS
+      group.tasks.forEach((task, taskIndex)=>{
+
+        const taskId =
+        `task-${phaseIndex}-${sectionIndex}-${groupIndex}-${taskIndex}`;
+
+        const item = document.createElement("div");
+        item.classList.add("todo-item");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = taskId;
+
+        const label = document.createElement("label");
+        label.innerText = task;
+        label.htmlFor = taskId;
+
+        const noteBtn = document.createElement("button");
+        noteBtn.classList.add("note-btn");
+        noteBtn.innerText = "📝 Note";
+
+        const noteArea = document.createElement("textarea");
+        noteArea.classList.add("note-area");
+        noteArea.placeholder = "Write notes here...";
+
+        // LOAD DATA
+        if(savedData[taskId]?.checked){
+          checkbox.checked = true;
+          label.classList.add("completed");
+        }
+
+        if(savedData[taskId]?.note){
+          noteArea.value = savedData[taskId].note;
+        }
+
+        // EVENTS
+        checkbox.addEventListener("change", ()=>{
+
+          label.classList.toggle(
+            "completed",
+            checkbox.checked
+          );
+
+          saveData();
+          updateProgress();
+
+        });
+
+        noteBtn.addEventListener("click", ()=>{
+
+          noteArea.classList.toggle("show-note");
+
+        });
+
+        noteArea.addEventListener("input", saveData);
+
+        item.appendChild(checkbox);
+        item.appendChild(label);
+        item.appendChild(noteBtn);
+
+        content.appendChild(item);
+        content.appendChild(noteArea);
+
+      });
+
+    });
+
+  });
+
+  phaseDiv.appendChild(header);
+  phaseDiv.appendChild(content);
+
+  container.appendChild(phaseDiv);
+
+});
+
+function saveData(){
+
+  const data = {};
+
+  document.querySelectorAll(".todo-item").forEach(item=>{
+
+    const checkbox = item.querySelector("input");
+    const noteArea = item.nextElementSibling;
+
+    data[checkbox.id] = {
+      checked: checkbox.checked,
+      note: noteArea.value
+    };
+
+  });
+
+  localStorage.setItem(
+    "faangRoadmapData",
+    JSON.stringify(data)
+  );
+
+}
+
+function updateProgress(){
+
+  const total =
+    document.querySelectorAll(
+      "input[type='checkbox']"
+    ).length;
+
+  const completed =
+    document.querySelectorAll(
+      "input[type='checkbox']:checked"
+    ).length;
+
+  const percent = (completed / total) * 100;
+
+  document.getElementById(
+    "overallProgress"
+  ).style.width = percent + "%";
+
+  document.getElementById(
+    "stats"
+  ).innerText =
+    `${completed} / ${total} Completed`;
+
+}
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
